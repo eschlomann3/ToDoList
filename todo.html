@@ -1,35 +1,100 @@
+<!--<!DOCTYPE html>
+<html lang="en" dir="ltr"></html>
+  <head>
+    <meta charset="utf-8">
+    <title> To Do List </title>
+  
+    <style>
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="app">
+      <h3>{{message}}</h3>
+      <form @submit.prevent="addTodo">
+        <label for="newTodo">New To Do</label>
+        <input v-model="newTodo" type="text" name="newTodo" id="newTodo" value=""> 
+        <button type="submit" name="button">Add</button>
+      </form>
+      <button @click="allDone" type="button" name="button"> All done! </button>
+      <ul>
+        <li v-for="todo in todos">
+          <input type="checkbox" v-model="todo.done">
+          <span :class="{ done:todo.done }">{{todo.message}} ></span>
+          <button @click="removeTodo(todo)" type="button" name="button"> remove </button>
+        </li>
+      </ul>
+    </main>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ez-css.now.sh">
+    <script scr="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script scr="list.js" charset="utf-8"></script>
+    <script src="vue.js" charset="UTF-8"></script>
+  
+  </body>
+</html> -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>To Do List</title>
+    <title>To Do List </title>
+
+<style>
+    .completed {
+        text-decoration: line-through;
+    }
+</style>
 </head>
+<body style="background-color:	#ffffcc">
 
-<script src="https://unpkg.com/vue"></script>
-<script src="list.js"></script>
-<script src="list.css"></script>
+    <div id= "todoApp" >
+        <div class="jumbotron">
+            <h1><center>To Do List</center></h1>
+        </div>
 
-<div id="todoApp">
-  <h3>{{message}}</h3>
-  <class name="todo-form" method="post" action="" v-on:submit.prevent="addTask">
-    <input name="add-todo" v-model="addTodoInput" type="text" v-bind:class="{error: hasError}"/>
-    <button type="submit">Add</button>
-  </class>
-  
-  
-  <div class="todo-lists" v-if="lists.length">
-    <h3>My Todo Tasks</h3>
-    <ul>
-      <li v-for="(list, index) in filterLists" :key="list.id">
-        <input type="checkbox" v-bind:id="'todo-' + index" v-on:change="completeTask($event, list)" v-bind:checked="list.isComplete"/>
-        <span class="title" contenteditable="true" 
-        v-on:keydown.enter="updateTask($event, list)" 
-        v-on:blur="updateTask($event, list)" 
-        v-bind:class="{completed: list.isComplete}">{{list.title}}</span> 
-        <span class="remove" v-on:click="removeTask(list)">x</span></li>
-    </ul>
-  </div>
-</div>
+      </body>
+        
 
+        <form name="todo-form" method="post" action="" v-on:submit.prevent="addTask"><center>
+            <input placeholder="New Item" name="add-todo" type="text" v-model="addTodoInput" v-bind:class="{error: completed}"/>
 
-</head>
+            <button type="submit">Add</button></center>
+        </form>
+        <div class="todo-lists" v-if="lists.length">
+            
+            <ul>
+                <li type="square" v-for="list in lists" :key="list.id">
+                    <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                    <span class="title"
+                    contenteditable="true"
+                    v-on:keydown.enter="updateTask($event, list)"
+                    v-on:blur="updateTask($event, list)"
+                    v-bind:class="{completed: list.isComplete}"> <span style= "color:black; font-size: large; ">{{list.title}}</span>
+                
+                    <button v-on:click="deleteTask(list.id)">Remove</button>
+                    <BR> 
+                    <span style="font-size:small;"> {{ list.dateCreated }} </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+        
+            
+            
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js" charset="UTF-8"></script>
+    <script src="list.js" charset="UTF-8"></script>
+        
+</body>
 </html>
