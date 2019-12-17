@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html>
+<html lang="en">
 <head>
-<title>Page Title</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ez-css.now.sh">
+    <title>To Do List </title>
+
+<style>
+    .completed {
+        text-decoration: line-through;
+    }
+</style>
 </head>
-<body>
+<body style="background-color:	#ffffcc">
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <div id= "todoApp" >
+        <div class="jumbotron">
+            <h1><center>To Do List</center></h1>
+        </div>
 
+      </body>
+        
+
+        <form name="todo-form" method="post" action="" v-on:submit.prevent="addTask"><center>
+            <input placeholder="New Item" name="add-todo" type="text" v-model="addTodoInput" v-bind:class="{error: completed}"/>
+
+            <button type="submit">Add</button></center>
+        </form>
+        <div class="todo-lists" v-if="lists.length">
+            
+            <ul>
+                <li type="square" v-for="list in lists" :key="list.id">
+                    <input type="checkbox" v-on:change="completeTask(list)" v-bind:checked="list.isComplete"/>
+                    <span class="title"
+                    contenteditable="true"
+                    v-on:keydown.enter="updateTask($event, list)"
+                    v-on:blur="updateTask($event, list)"
+                    v-bind:class="{completed: list.isComplete}"> <span style= "color:black; font-size: large; ">{{list.title}}</span>
+                
+                    <button v-on:click="deleteTask(list.id)">Remove</button>
+                    <BR> 
+                    <span style="font-size:small;"> {{ list.dateCreated }} </span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+        
+            
+            
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js" charset="UTF-8"></script>
+    <script src="list.js" charset="UTF-8"></script>
+    <a href="file:///users/ewelinaschlomann/Documents/GitHub/ToDoList/todo.html"></a>
+        
 </body>
 </html>
